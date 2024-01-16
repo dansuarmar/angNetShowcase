@@ -1,0 +1,59 @@
+<div class="col-12">
+    <div class="card">
+        <h5>This is the Customer List Page</h5>
+        <p-table [value]="customers" responsiveLayout="scroll">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="fullName" style="width: 20%;">
+                        Full Name
+                        <p-sortIcon field="fullName"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="lastName" style="width: 20%;">
+                        LastName
+                        <p-sortIcon field="lastName"></p-sortIcon>
+                    </th>
+                    <th>
+                        E-Mail 
+                    </th>
+                    <th>
+                        Phone
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Created
+                    </th>
+                    <th>
+                        Last Update
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-customer >
+                <tr>
+                    <td>
+                        {{ customer.firstName }}
+                    </td>
+                    <td>
+                        {{ customer.lastName }}
+                    </td>
+                    <td>
+                        {{ customer.email }}
+                    </td>
+                    <td>
+                        {{ customer.phone }}
+                    </td>
+                    <td>
+                        {{ customer.description }}
+                    </td>
+                    <td>
+                        {{ customer.created | date:'medium'}}
+                    </td>
+                    <td *ngIf="customer.lastUpdated">
+                        {{ cutomer.lastUpdated | date:'medium'}}
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

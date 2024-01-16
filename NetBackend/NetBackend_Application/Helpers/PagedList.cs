@@ -11,13 +11,13 @@ namespace NetBackend_Application.Helpers
     {
         private PagedList(List<T> items, int page, int size, int total) 
         {
-            Item = items;
+            Items = items;
             Page = page;
             Size = size;
             Total = total;
         }
 
-        public List<T> Item { get; private set; }
+        public List<T> Items { get; private set; }
         public int Page { get; private set; }
         public int Size { get; private set; } 
         public int Total { get; private set; }

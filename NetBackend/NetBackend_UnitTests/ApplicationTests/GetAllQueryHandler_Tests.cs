@@ -47,7 +47,7 @@ public class GetAllQueryHandler_Tests
         var sut = new GetAllCustomersQueryHandler(context, new AppMapper());
         var result = await sut.Handle(query, new CancellationToken());
 
-        Assert.Equal(query.Size, result.Item.Count);
+        Assert.Equal(query.Size, result.Items.Count);
         Assert.True(result.HasNext);
         Assert.False(result.HasPrev);
     }

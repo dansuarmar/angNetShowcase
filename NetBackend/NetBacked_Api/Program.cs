@@ -12,6 +12,10 @@ namespace NetBacked_Api
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("LocalPolicy", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            });
 
             builder.Services.AddControllers();
 
@@ -30,6 +34,8 @@ namespace NetBacked_Api
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
+            app.UseCors("LocalPolicy");
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
