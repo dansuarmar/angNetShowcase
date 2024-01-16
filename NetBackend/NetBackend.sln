@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetBackend_Database", "NetB
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetBacked_Api", "NetBacked_Api\NetBacked_Api.csproj", "{CA14EEDF-9181-4EA9-97C2-CEFBA08FFC4A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetBackend_Application", "NetBackend_Application\NetBackend_Application.csproj", "{0B3DB1D3-9C7A-4B62-B45E-B91C2D928208}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetBackend_UnitTests", "NetBackend_UnitTests\NetBackend_UnitTests.csproj", "{3DDBEC1F-8200-4ABA-A2EF-236A80F5EAB1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{CA14EEDF-9181-4EA9-97C2-CEFBA08FFC4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA14EEDF-9181-4EA9-97C2-CEFBA08FFC4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA14EEDF-9181-4EA9-97C2-CEFBA08FFC4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B3DB1D3-9C7A-4B62-B45E-B91C2D928208}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B3DB1D3-9C7A-4B62-B45E-B91C2D928208}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B3DB1D3-9C7A-4B62-B45E-B91C2D928208}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B3DB1D3-9C7A-4B62-B45E-B91C2D928208}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DDBEC1F-8200-4ABA-A2EF-236A80F5EAB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DDBEC1F-8200-4ABA-A2EF-236A80F5EAB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DDBEC1F-8200-4ABA-A2EF-236A80F5EAB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DDBEC1F-8200-4ABA-A2EF-236A80F5EAB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

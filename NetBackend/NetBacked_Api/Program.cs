@@ -1,7 +1,10 @@
 using Microsoft.EntityFrameworkCore;
+using NetBackend_Application.CustomerApp;
 using NetBackend_Database;
 using NetBackend_Database.Seed;
+using System.Reflection;
 
+[assembly: AssemblyVersion("1.0.*")]
 namespace NetBacked_Api
 {
     public class Program
@@ -18,6 +21,9 @@ namespace NetBacked_Api
                 x => x.MigrationsAssembly("NetBackend_Database"))
             );
             builder.Services.AddScoped<DbInitializer, DbInitializer>();
+
+            builder.Services.AddSingleton<AppMapper, AppMapper>();
+            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetAllCustomersQuery).Assembly));
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

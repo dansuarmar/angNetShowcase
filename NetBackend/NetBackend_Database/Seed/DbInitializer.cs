@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Bogus;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using NetBackend_Database.Model;
 
@@ -15,7 +16,8 @@ namespace NetBackend_Database.Seed
                 if(appDbContext.Database.GetPendingMigrations().Any()) 
                     appDbContext.Database.Migrate();
 
-                SeedCustomers();
+                SeedFirstCustomers();
+                SeedMultipleCustomersIfNotEnoughExists(100);
                 appDbContext.SaveChanges();
             }
             catch (Exception ex) 
@@ -24,7 +26,7 @@ namespace NetBackend_Database.Seed
             }
         }
 
-        private void SeedCustomers()
+        private void SeedFirstCustomers()
         {
             var customerId = new Guid("c3aa9321-79a3-41ef-81b4-a99536a7a6bc");
             var someCustomer = appDbContext.Customers.FirstOrDefault(m => m.Id == customerId);
@@ -42,6 +44,29 @@ namespace NetBackend_Database.Seed
                     Created = DateTime.Now,
                 };
                 appDbContext.Customers.Add(customer);
+            }
+        }
+
+        private void SeedMultipleCustomersIfNotEnoughExists(int number) 
+        {
+            var customersNumber = appDbContext.Customers.Count();
+            int pending = number - customersNumber;
+            if (pending > 0) 
+            {
+                var faker = new Faker<Customer>().
+                    RuleFor(u => u.FirstName, (f, u) => f.Name.FirstName()).
+                    RuleFor(u => u.LastName, (f, u) => f.Name.LastName()).
+                    RuleFor(u => u.Phone, (f, u) => f.Phone.PhoneNumber()).
+                    RuleFor(u => u.Email, (f, u) => f.Internet.Email()).
+                    RuleFor(u => u.Description, (f, u) => f.Rant.Random.Words()).
+                    RuleFor(u => u.Created, (f, u) => f.Date.PastOffset());
+
+                var customersToAdd = new List<Customer>();
+                for (int i = 0; i < pending; i++) 
+                {
+                    customersToAdd.Add(faker.Generate());
+                }
+                appDbContext.AddRange(customersToAdd);
             }
         }
     }
