@@ -15,7 +15,7 @@ namespace NetBackend_Database.Seed
                 if(appDbContext.Database.GetPendingMigrations().Any()) 
                     appDbContext.Database.Migrate();
 
-                SeedClients();
+                SeedCustomers();
                 appDbContext.SaveChanges();
             }
             catch (Exception ex) 
@@ -24,24 +24,24 @@ namespace NetBackend_Database.Seed
             }
         }
 
-        private void SeedClients()
+        private void SeedCustomers()
         {
             var customerId = new Guid("c3aa9321-79a3-41ef-81b4-a99536a7a6bc");
-            var someClient = appDbContext.Customers.FirstOrDefault(m => m.Id == customerId);
+            var someCustomer = appDbContext.Customers.FirstOrDefault(m => m.Id == customerId);
 
-            if (someClient == null) 
+            if (someCustomer == null) 
             {
-                var client = new Customer()
+                var customer = new Customer()
                 {
                     Id = customerId,
                     FirstName = "Joe",
                     LastName = "Doe",
-                    Email = "email@client.com",
+                    Email = "email@customer.com",
                     Phone = "(555) 555-5555",
-                    Description = "Description about this client needs.",
+                    Description = "Description about this customer needs.",
                     Created = DateTime.Now,
                 };
-                appDbContext.Customers.Add(client);
+                appDbContext.Customers.Add(customer);
             }
         }
     }
