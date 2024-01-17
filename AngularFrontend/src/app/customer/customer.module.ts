@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CustomerRoutingModule } from './customer-routing.module';
-import { CustomerListPage } from './list/customer-list.page';
+import { CustomerListPage } from './List/customer-list.page';
 import { HttpClientModule } from '@angular/common/http';
 import { TableModule } from 'primeng/table';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -23,7 +23,7 @@ import { RippleModule } from 'primeng/ripple';
 import { DialogModule } from 'primeng/dialog';
 import { CustomerDetailsComponent } from './details/customer-details.component';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { CustomerListRowComponent } from './list/customer-list-row.component';
+import { CustomerListRowComponent } from './List/customer-list-row.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 
