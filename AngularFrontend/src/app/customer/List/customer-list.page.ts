@@ -13,6 +13,8 @@ export class CustomerListPage implements OnInit {
     pagedList!: PagedList;
     customers: Customer[] = [];
     selectedCustomer!: Customer;
+    totalRecords: number = 0;
+    loading: boolean = true;
 
     constructor(
         private customerService: CustomerService,
@@ -77,9 +79,32 @@ export class CustomerListPage implements OnInit {
     }
 
     ngOnInit() {
-        this.customerService.getAll().subscribe({
+        // this.customerService.getAll().subscribe({
+        //     next: (result) => {
+        //         this.loading = false;
+        //         this.pagedList = result;
+        //         this.totalRecords = result.total;
+        //         this.customers = result.items;
+        //         var lastSelectedId = sessionStorage.getItem('lastSelection');
+        //         if(lastSelectedId){
+        //           this.selectedCustomer = this.customers.find(m => m.id === lastSelectedId);
+        //         }
+        //     },
+        // });
+    }
+
+    loadCustomers(event: any){
+        console.log(event);
+        const first = event.first;
+        const rows = event.rows;
+        const sortField = event.sortField;
+        const sortOrder = event.sortOrder;
+
+        this.customerService.getAll(first, rows, sortField, sortOrder).subscribe({
             next: (result) => {
+                this.loading = false;
                 this.pagedList = result;
+                this.totalRecords = result.total;
                 this.customers = result.items;
                 var lastSelectedId = sessionStorage.getItem('lastSelection');
                 if(lastSelectedId){

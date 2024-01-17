@@ -13,8 +13,16 @@ export class CustomerService {
         this.apiUrl = environment.apiUrl + 'Customer';
     }
 
-    getAll(): Observable<any> {
-        return this.http.get<any>(this.apiUrl + '?size=1000');
+    getAll(first: number, rows: number, sortField: string, sortOrder: number): Observable<any> {
+        const parameters = this.generateGetAllParameters(first, rows, sortField, sortOrder);
+        return this.http.get<any>(this.apiUrl + parameters);
+    }
+
+    private generateGetAllParameters(first: number, rows: number, sortField: string, sortOrder: number): string{ 
+        let parameters = '?';
+        parameters += `size=${rows}&`;
+        parameters += `page=${(first / rows) + 1}&`;
+        return parameters;
     }
 
     getById(id: string): Observable<any> {
