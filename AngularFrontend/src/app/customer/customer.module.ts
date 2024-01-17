@@ -23,7 +23,7 @@ import { RippleModule } from 'primeng/ripple';
 import { DialogModule } from 'primeng/dialog';
 import { CustomerDetailsComponent } from './details/customer-details.component';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { CustomerListRowComponent } from './List/customer-list-row.component';
+import { CustomerListRowComponent } from './list/customer-list-row.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 

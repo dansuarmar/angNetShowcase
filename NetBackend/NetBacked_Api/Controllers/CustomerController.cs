@@ -74,7 +74,7 @@ namespace NetBacked_Api.Controllers
         {
             var command = new DeleteCustomerCommand() { Id = id };
             var result = await _mediator.Send(command, cancellation);
-            return result ? Ok("Deleted") : NotFound();
+            return result ? Ok(true) : NotFound();
         }
     }
 }
