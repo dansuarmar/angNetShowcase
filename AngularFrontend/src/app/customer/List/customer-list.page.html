@@ -8,6 +8,8 @@
                 <a pButton pRipple type="button" label="Add New" [routerLink]="'create'" class="force-white-text"></a>
             </div>
         </div>
+        <p-toast></p-toast>
+        <p-confirmDialog></p-confirmDialog>
         <p-table [value]="customers" responsiveLayout="scroll" editMode="row" selectionMode="single"
             [(selection)]="selectedCustomer" dataKey="id" (onRowSelect)="onRowSelect($event)">
             <ng-template pTemplate="header">
@@ -40,7 +42,8 @@
             </ng-template>
             <ng-template pTemplate="body" let-customer let-editing="editing" let-ri="id">
                 <tr [pEditableRow]="customer" customer-list-row [customer]="customer" [pSelectableRow]="customer"
-                    (customerChanged)="onCustomerChanged($event)" (changeCanceled)="onChangedCanceled($event)">
+                    (customerChanged)="onCustomerChanged($event)" (changeCanceled)="onChangedCanceled($event)"
+                    (deleteCustomer)="onCustomerDelete($event)">
                 </tr>
             </ng-template>
         </p-table>

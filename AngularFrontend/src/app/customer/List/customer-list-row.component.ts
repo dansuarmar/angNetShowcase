@@ -20,10 +20,11 @@ export class CustomerListRowComponent {
     @Input() customer: Customer;
     @Output() customerChanged = new EventEmitter<Customer>();
     @Output() changeCanceled = new EventEmitter<Customer>();
+    @Output() deleteCustomer = new EventEmitter<Customer>();
     @ViewChild('firstName') firstNameField: any;
     @ViewChild('email') emailField: any;
 
-    constructor(private messageService: MessageService) {}
+    constructor() {}
 
     onRowEditInit(customer: Customer) {
         Object.assign(this.customerTemp, this.customer);
@@ -41,5 +42,9 @@ export class CustomerListRowComponent {
     onRowEditCancel(customer: Customer, index: number) {
         this.editing = false;
         this.changeCanceled.emit(this.customerTemp);
+    }
+
+    onRowDelete(customer: Customer){
+        this.deleteCustomer.emit(customer);
     }
 }

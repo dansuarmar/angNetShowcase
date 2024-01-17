@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PagedList } from '../../models/paged-list.model';
 import { Customer } from '../../models/customer.model';
 import { CustomerService } from 'src/app/services/customers.service';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
 
 @Component({
     selector: 'customer-list',
@@ -16,6 +16,7 @@ export class CustomerListPage implements OnInit {
 
     constructor(
         private customerService: CustomerService,
+        private confirmationService: ConfirmationService,
         private messageService: MessageService
     ) {}
 
@@ -28,7 +29,37 @@ export class CustomerListPage implements OnInit {
                     (item) => item.id === customer.id
                 );
                 this.customers[index] = result;
+                this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Customer Updated' });
             },
+        });
+    }
+
+    onCustomerDelete(customer: Customer){
+        console.log(customer);
+        this.confirmationService.confirm({
+            target: event.target as EventTarget,
+            message: 'Do you want to delete this Customer?',
+            header: 'Delete Confirmation',
+            icon: 'pi pi-info-circle',
+            acceptButtonStyleClass:"p-button-danger p-button-text",
+            rejectButtonStyleClass:"p-button-text p-button-text",
+            acceptIcon:"none",
+            rejectIcon:"none",
+
+            accept: () => {
+                this.customerService.delete(customer).subscribe({
+                    next: (result) => {
+                        const index = this.customers.findIndex(
+                            (item) => item.id === customer.id
+                        );
+                        this.customers.splice(index, 1);
+                        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Customer deleted' });
+                    }
+                });
+            },
+            reject: () => {
+                this.messageService.add({ severity: 'error', summary: 'Canceled', detail: 'Customer deletion cancelled' });
+            }
         });
     }
 

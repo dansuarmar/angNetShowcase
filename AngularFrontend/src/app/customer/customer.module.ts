@@ -22,8 +22,10 @@ import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 import { DialogModule } from 'primeng/dialog';
 import { CustomerDetailsComponent } from './details/customer-details.component';
-import { MessageService } from 'primeng/api';
-import { CustomerListRowComponent } from './list/customer-list-row.component';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { CustomerListRowComponent } from './List/customer-list-row.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   imports: [
@@ -41,6 +43,7 @@ import { CustomerListRowComponent } from './list/customer-list-row.component';
 		InputNumberModule,
 		CascadeSelectModule,
 		MultiSelectModule,
+    ToastModule,
 		InputTextareaModule,
 		InputTextModule,
 		InputGroupModule,
@@ -48,6 +51,7 @@ import { CustomerListRowComponent } from './list/customer-list-row.component';
     ButtonModule,
 		RippleModule,
     DialogModule,
+    ConfirmDialogModule
   ],
   declarations: [
     CustomerListPage, 
@@ -56,7 +60,8 @@ import { CustomerListRowComponent } from './list/customer-list-row.component';
     CustomerListRowComponent
   ],
   providers:[
-    MessageService
+    MessageService,
+    ConfirmationService
   ]
 })
 export class CustomerModule { }
