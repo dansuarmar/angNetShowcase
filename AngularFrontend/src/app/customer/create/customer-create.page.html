@@ -1,0 +1,76 @@
+<div class="col-12">
+    <div class="card">
+        <h5>Create New Customer</h5><br />
+        <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+            <div class="grid p-fluid">
+                <div class="field col-12 md:col-6">
+                    <p-inputGroup>
+                        <p-inputGroupAddon>
+                            <i class="pi pi-user"></i>
+                        </p-inputGroupAddon>
+                        <span class="p-float-label">
+                            <input type="text" pInputText formControlName="firstName" />
+                            <label for="firstName">First Name</label>
+                        </span>
+                    </p-inputGroup>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <p-inputGroup>
+                        <p-inputGroupAddon>
+                            <i class="pi pi-user"></i>
+                        </p-inputGroupAddon>
+                        <span class="p-float-label">
+                            <input type="text" pInputText formControlName="lastName" />
+                            <label for="lastName">Last Name</label>
+                        </span>
+                    </p-inputGroup>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <p-inputGroup>
+                        <p-inputGroupAddon>
+                            <i class="pi pi-at"></i>
+                        </p-inputGroupAddon>
+                        <span class="p-float-label">
+                            <input type="text" pInputText formControlName="email" />
+                            <label for="email">E-mail</label>
+                        </span>
+                    </p-inputGroup>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <p-inputGroup>
+                        <p-inputGroupAddon>
+                            <i class="pi pi-phone"></i>
+                        </p-inputGroupAddon>
+                        <span class="p-float-label">
+                            <input type="text" pInputText formControlName="phone" />
+                            <label for="phone">Phone</label>
+                        </span>
+                    </p-inputGroup>
+                </div>
+                <div class="field col-12">
+                    <span class="p-float-label">
+                        <textarea rows="3" cols="30" formControlName="description" pInputTextarea></textarea>
+                        <label for="description">Description</label>
+                    </span>
+                </div>
+                <div class="col-6">
+                    <a pButton pRipple type="button" label="Cancel" class="p-button-danger" [routerLink]="'/'"></a>
+                </div>
+                <div class="col-6">
+                    <button pButton pRipple type="submit" label="Save" class="p-button-success"></button>
+                </div>
+            </div>
+        </form>
+        <!-- <button (click)="displayError=true" pButton icon="pi pi-external-link" label="Show"></button> -->
+        <p-dialog header="Error" [(visible)]="displayError" [modal]="true" showEffect="fade" [style]="{width: '30vw'}"
+            [breakpoints]="{'960px': '75vw'}">
+            <p class="line-height-3 m-0">
+                {{ errorMessage }}
+            </p>
+            <ng-template pTemplate="footer">
+                <button pButton icon="pi pi-check" (click)="display=false" label="Ok"
+                    class="p-button-outlined"></button>
+            </ng-template>
+        </p-dialog>
+    </div>
+</div>

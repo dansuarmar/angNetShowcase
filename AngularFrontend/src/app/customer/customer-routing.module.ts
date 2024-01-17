@@ -1,12 +1,22 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CustomerPage } from './List/customer-list.page';
+import { CustomerListPage } from './list/customer-list.page';
+import { CustomerCreatePage } from './create/customer-create.page';
+import { CustomerDetailsComponent } from './details/customer-details.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: CustomerPage
-  }
+    component: CustomerListPage
+  },
+  {
+    path: 'create',
+    component: CustomerCreatePage
+  },
+  // {
+  //   path:'details/:id',
+  //   component: CustomerDetailsComponent
+  // }
 ];
 
 @NgModule({

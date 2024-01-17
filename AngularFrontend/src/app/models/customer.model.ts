@@ -5,6 +5,6 @@ export class Customer {
     email!: string
     phone!: string
     description!: string
-    created!: Date
+    created?: Date
     lastUpdated?: Date
 }

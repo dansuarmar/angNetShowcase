@@ -72,11 +72,11 @@ import { AppLayoutComponent } from './layout/app.layout.component';
                 { path: 'notfound', component: NotfoundComponent },
                 { path: '**', redirectTo: '/notfound' },
             ],
-            {
-                scrollPositionRestoration: 'enabled',
-                anchorScrolling: 'enabled',
-                onSameUrlNavigation: 'reload',
-            }
+            // {
+            //     scrollPositionRestoration: 'enabled',
+            //     anchorScrolling: 'enabled',
+            //     onSameUrlNavigation: 'reload',
+            // }
         ),
     ],
     exports: [RouterModule],
