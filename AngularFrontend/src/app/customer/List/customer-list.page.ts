@@ -37,7 +37,6 @@ export class CustomerListPage implements OnInit {
     onCustomerDelete(customer: Customer){
         console.log(customer);
         this.confirmationService.confirm({
-            target: event.target as EventTarget,
             message: 'Do you want to delete this Customer?',
             header: 'Delete Confirmation',
             icon: 'pi pi-info-circle',
