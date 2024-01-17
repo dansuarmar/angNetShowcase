@@ -22,6 +22,12 @@ export class CustomerService {
         let parameters = '?';
         parameters += `size=${rows}&`;
         parameters += `page=${(first / rows) + 1}&`;
+        if(sortField){
+            parameters += `sort=${sortField}&`;
+            parameters += sortOrder === -1 ? `order=desc&` : '';
+        }
+
+
         return parameters;
     }
 
