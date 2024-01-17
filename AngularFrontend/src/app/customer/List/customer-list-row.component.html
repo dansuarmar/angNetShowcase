@@ -51,7 +51,14 @@
     </p-cellEditor>
 </td>
 <td>
-    {{ customer.description }}
+    <p-cellEditor>
+        <ng-template pTemplate="input">
+            <textarea pInputText type="text" [(ngModel)]="customer.description"></textarea>
+        </ng-template>
+        <ng-template pTemplate="output">
+            {{ customer.description }}
+        </ng-template>
+    </p-cellEditor>
 </td>
 <td>
     {{ customer.created | date:'medium'}}
