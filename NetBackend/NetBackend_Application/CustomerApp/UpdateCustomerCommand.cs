@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NetBackend_Application.CustomerApp
 {
-    public class UpdateCustomerCommand : CustomerDTO, IRequest<CustomerResponse>
+    public class UpdateCustomerCommand : CustomerDTO, IRequest<CustomerResult>
     {
     }
 }

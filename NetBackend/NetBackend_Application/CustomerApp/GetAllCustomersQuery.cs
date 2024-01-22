@@ -3,7 +3,7 @@ using NetBackend_Application.Helpers;
 
 namespace NetBackend_Application.CustomerApp
 {
-    public class GetAllCustomersQuery : IRequest<PagedList<CustomerResponse>>
+    public class GetAllCustomersQuery : IRequest<PagedResult<CustomerResult>>
     {
         public string? SearchTerm { get; set; }
         public string? SortOrder { get; set; }

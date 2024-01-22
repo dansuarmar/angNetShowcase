@@ -13,6 +13,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetBackend_UnitTests", "Net
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetBackend_Api_Controllers", "NetBackend_Api_Controllers\NetBackend_Api_Controllers.csproj", "{ECB084DF-578E-4B28-9070-3D702F815D22}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{41B3E13E-339A-4E2B-9350-702453DF05C3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{1574D21E-111B-4FD0-A0C0-FAF3351B3C10}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{4A5DB5EA-4A62-4EE3-A87F-EFFFE1E9F761}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infraestructure", "Infraestructure", "{194F6BC0-F1C4-47F8-9F84-0DB17B73777D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "zTests", "zTests", "{EE47A788-EBCD-44AB-8780-4C40CF314ADD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +52,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{89C130F8-9F83-4952-9625-23569DF1A041} = {194F6BC0-F1C4-47F8-9F84-0DB17B73777D}
+		{CA14EEDF-9181-4EA9-97C2-CEFBA08FFC4A} = {41B3E13E-339A-4E2B-9350-702453DF05C3}
+		{0B3DB1D3-9C7A-4B62-B45E-B91C2D928208} = {1574D21E-111B-4FD0-A0C0-FAF3351B3C10}
+		{3DDBEC1F-8200-4ABA-A2EF-236A80F5EAB1} = {EE47A788-EBCD-44AB-8780-4C40CF314ADD}
+		{ECB084DF-578E-4B28-9070-3D702F815D22} = {41B3E13E-339A-4E2B-9350-702453DF05C3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DFD33CE4-50D7-4539-9AA5-8C887F6B46B4}

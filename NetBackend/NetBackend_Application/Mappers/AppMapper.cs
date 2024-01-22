@@ -6,7 +6,7 @@ namespace NetBackend_Application.CustomerApp
     [Mapper(AllowNullPropertyAssignment = false)]
     public partial class AppMapper
     {
-        public partial CustomerResponse CustomerToCustomerResponse(Customer customer);
+        public partial CustomerResult CustomerToCustomerResponse(Customer customer);
 
         public partial Customer CreateCustomerCommandToCustomer(CreateCustomerCommand createCustomerCommand);
         

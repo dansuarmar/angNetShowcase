@@ -4,7 +4,7 @@ using NetBackend_Database;
 
 namespace NetBackend_Application.CustomerApp
 {
-    public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand, CustomerResponse>
+    public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand, CustomerResult>
     {
         public readonly AppDbContext _context;
         public readonly ILogger<CreateCustomerCommandHandler> _logger;
@@ -17,7 +17,7 @@ namespace NetBackend_Application.CustomerApp
             this._mapper = mapper;
         }
 
-        public async Task<CustomerResponse> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
+        public async Task<CustomerResult> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
         {
             var customer = _mapper.CreateCustomerCommandToCustomer(request);
             var response = await _context.Customers.AddAsync(customer);

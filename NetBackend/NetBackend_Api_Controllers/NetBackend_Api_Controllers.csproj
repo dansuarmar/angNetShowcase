@@ -12,10 +12,15 @@
   
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.2.0" />
+    <PackageReference Include="Riok.Mapperly" Version="3.3.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\NetBackend_Application\NetBackend_Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Mappers\" />
   </ItemGroup>
 
 </Project>

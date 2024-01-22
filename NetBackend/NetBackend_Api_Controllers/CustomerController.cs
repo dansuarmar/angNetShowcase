@@ -1,5 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using NetBackend_Api_Controllers;
+using NetBackend_Api_Controllers.Contracts;
 using NetBackend_Application.CustomerApp;
 using NetBackend_Application.Helpers;
 
@@ -34,15 +36,17 @@ namespace NetBackend_Api.Controllers
                 Page = page,
                 Size = size,
             };
-            PagedList<CustomerResponse> result = await _mediator.Send(query, cancellationToken);
-            return Ok(result);
+            PagedResult<CustomerResult> result = await _mediator.Send(query, cancellationToken);
+            PagedResponse<CustomerResponse> apiResponse = ApiMapper.CustomerListResulttoPagedResponse(result);
+
+            return Ok(apiResponse);
         }
 
         [HttpGet("{customerId}")]
         public async Task<IActionResult> GetById(Guid customerId)
         {
             var query = new GetCustomersByIdQuery(customerId);
-            CustomerResponse result = await _mediator.Send(query);
+            CustomerResult result = await _mediator.Send(query);
             return result != null ? Ok(result) : NotFound();
         }
 

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace NetBackend_Application.CustomerApp
 {
-    public class UpdateCustomerCommandHandler : IRequestHandler<UpdateCustomerCommand, CustomerResponse?>
+    public class UpdateCustomerCommandHandler : IRequestHandler<UpdateCustomerCommand, CustomerResult?>
     {
         private readonly AppDbContext _dbContext;
         private readonly ILogger<UpdateCustomerCommandHandler> _logger;
@@ -23,7 +23,7 @@ namespace NetBackend_Application.CustomerApp
             _mapper = mapper;
         }
 
-        public async Task<CustomerResponse?> Handle(UpdateCustomerCommand request, CancellationToken cancellationToken)
+        public async Task<CustomerResult?> Handle(UpdateCustomerCommand request, CancellationToken cancellationToken)
         {
             var customer = await _dbContext.Customers.FirstOrDefaultAsync(m => m.Id == request.Id);
             if (customer == null)

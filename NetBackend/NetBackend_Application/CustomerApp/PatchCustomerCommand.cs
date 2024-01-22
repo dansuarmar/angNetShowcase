@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NetBackend_Application.CustomerApp
 {
-    public class PatchCustomerCommand : IRequest<CustomerResponse>
+    public class PatchCustomerCommand : IRequest<CustomerResult>
     {
         public Guid Id { get; set; }
         [StringLength(200, MinimumLength = 1)]

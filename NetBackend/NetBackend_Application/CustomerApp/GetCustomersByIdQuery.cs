@@ -2,7 +2,7 @@
 
 namespace NetBackend_Application.CustomerApp
 {
-    public class GetCustomersByIdQuery : IRequest<CustomerResponse>
+    public class GetCustomersByIdQuery : IRequest<CustomerResult>
     {
         public Guid CustomerId { get; }
         public GetCustomersByIdQuery(Guid id)

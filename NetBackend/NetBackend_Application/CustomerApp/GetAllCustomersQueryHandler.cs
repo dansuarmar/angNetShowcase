@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 
 namespace NetBackend_Application.CustomerApp
 {
-    public class GetAllCustomersQueryHandler : IRequestHandler<GetAllCustomersQuery, PagedList<CustomerResponse>>
+    public class GetAllCustomersQueryHandler : IRequestHandler<GetAllCustomersQuery, PagedResult<CustomerResult>>
     {
         private readonly AppDbContext _dbContext;
         private readonly AppMapper _mapper;
@@ -19,7 +19,7 @@ namespace NetBackend_Application.CustomerApp
             this._mapper = appMapper;
         }
 
-        public async Task<PagedList<CustomerResponse>> Handle(GetAllCustomersQuery request, CancellationToken cancellationToken)
+        public async Task<PagedResult<CustomerResult>> Handle(GetAllCustomersQuery request, CancellationToken cancellationToken)
         {
             var customersQuery = _dbContext.Customers.AsQueryable();
             customersQuery = AddSearchQuery(request, customersQuery);
@@ -27,7 +27,7 @@ namespace NetBackend_Application.CustomerApp
 
             var customerResponses = customersQuery.Select(m => _mapper.CustomerToCustomerResponse(m));
 
-            var customers = await PagedList<CustomerResponse>.CreatePagedListAsync(
+            var customers = await PagedResult<CustomerResult>.CreatePagedListAsync(
                 customerResponses, 
                 request.Page, 
                 request.Size, 
