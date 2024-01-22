@@ -13,8 +13,8 @@ namespace NetBackend_Api_Controllers
     [Mapper(AllowNullPropertyAssignment = false)]
     internal static partial class ApiMapper
     {
-        public static partial CustomerResponse CustomerResultToCustomerResponse(CustomerResult customerResult);
+        public static partial CustomerResponse? CustomerResultToCustomerResponse(CustomerResult? customerResult);
 
-        public static partial PagedResponse<CustomerResponse> CustomerListResulttoPagedResponse(PagedResult<CustomerResult> pagedResponse);
+        public static partial PagedResponse<CustomerResponse> CustomerPageResulttoPagedResponse(PagedResult<CustomerResult> pagedResponse);
     }
 }

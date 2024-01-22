@@ -37,47 +37,52 @@ namespace NetBackend_Api.Controllers
                 Size = size,
             };
             PagedResult<CustomerResult> result = await _mediator.Send(query, cancellationToken);
-            PagedResponse<CustomerResponse> apiResponse = ApiMapper.CustomerListResulttoPagedResponse(result);
+            PagedResponse<CustomerResponse> apiResponse = ApiMapper.CustomerPageResulttoPagedResponse(result);
 
             return Ok(apiResponse);
         }
 
         [HttpGet("{customerId}")]
-        public async Task<IActionResult> GetById(Guid customerId)
+        public async Task<IActionResult> GetById(Guid customerId, CancellationToken cancellationToken)
         {
             var query = new GetCustomersByIdQuery(customerId);
-            CustomerResult result = await _mediator.Send(query);
-            return result != null ? Ok(result) : NotFound();
+            CustomerResult result = await _mediator.Send(query, cancellationToken);
+            CustomerResponse? response =  ApiMapper.CustomerResultToCustomerResponse(result);
+
+            return response != null ? Ok(response) : NotFound();
         }
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateCustomerCommand command)
         {
-            var result = await _mediator.Send(command);
-            return CreatedAtAction("GetById", new { customerId = result.Id }, result);
+            CustomerResult result = await _mediator.Send(command);
+            CustomerResponse? response = ApiMapper.CustomerResultToCustomerResponse(result);
+            return CreatedAtAction("GetById", new { customerId = response?.id }, response);
         }
 
         [HttpPatch("{id}")]
         public async Task<IActionResult> Patch(Guid id, [FromBody] PatchCustomerCommand command)
         {
             command.Id = id;
-            var result = await _mediator.Send(command);
-            return result != null ? CreatedAtAction("GetById", new { customerId = id }, result) : NotFound();
+            CustomerResult? result = await _mediator.Send(command);
+            CustomerResponse? response = ApiMapper.CustomerResultToCustomerResponse(result);
+            return response != null ? CreatedAtAction("GetById", new { customerId = id }, response) : NotFound();
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(Guid id, [FromBody] UpdateCustomerCommand command)
         {
             command.Id = id;
-            var result = await _mediator.Send(command);
-            return result != null ? CreatedAtAction("GetById", new { customerId = id }, result) : NotFound();
+            CustomerResult? result = await _mediator.Send(command);
+            CustomerResponse? response = ApiMapper.CustomerResultToCustomerResponse(result);
+            return response != null ? CreatedAtAction("GetById", new { customerId = id }, response) : NotFound();
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(Guid id, CancellationToken cancellation)
+        public async Task<IActionResult> Delete(Guid id)
         {
             var command = new DeleteCustomerCommand() { Id = id };
-            var result = await _mediator.Send(command, cancellation);
+            bool result = await _mediator.Send(command);
             return result ? Ok(true) : NotFound();
         }
     }
