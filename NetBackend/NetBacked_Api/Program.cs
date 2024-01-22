@@ -19,11 +19,24 @@ namespace NetBacked_Api
 
             builder.Services.AddControllers();
 
-            //Add SQL and AppDbContext
-            builder.Services.AddDbContext<AppDbContext>(option => 
-                option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
-                x => x.MigrationsAssembly("NetBackend_Database"))
-            );
+
+            if (Environment.OSVersion.Platform == PlatformID.Unix)
+            {
+                //Use InMemoryDB when Running on Mac
+                builder.Services.AddDbContext<AppDbContext>(option =>
+                    option.UseInMemoryDatabase("MemoryDB"));
+            }
+            else 
+            {
+                //Add SQL and AppDbContext
+                builder.Services.AddDbContext<AppDbContext>(option =>
+                    option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
+                    x => x.MigrationsAssembly("NetBackend_Database"))
+                );
+            }
+
+
+
             builder.Services.AddScoped<DbInitializer, DbInitializer>();
 
             builder.Services.AddSingleton<AppMapper, AppMapper>();
@@ -43,7 +56,7 @@ namespace NetBacked_Api
                 app.UseSwaggerUI();
             }
 
-            using (var scope = app.Services.CreateScope()) 
+            using (var scope = app.Services.CreateScope())
             {
                 var dbInitializer = scope.ServiceProvider.GetRequiredService<DbInitializer>();
                 dbInitializer.Seed();

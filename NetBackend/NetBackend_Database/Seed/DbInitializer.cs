@@ -9,18 +9,21 @@ namespace NetBackend_Database.Seed
     {
         readonly AppDbContext appDbContext = appDbContext;
 
-        public void Seed() 
+        public void Seed()
         {
-            try 
+            try
             {
-                if(appDbContext.Database.GetPendingMigrations().Any()) 
-                    appDbContext.Database.Migrate();
+                try
+                { // In case of Mac Migrations don't apply, so I'm simply skipping the Exception.
+                    if (appDbContext.Database.GetPendingMigrations().Any())
+                        appDbContext.Database.Migrate();
+                } catch {}
 
                 SeedFirstCustomers();
                 SeedMultipleCustomersIfNotEnoughExists(100);
                 appDbContext.SaveChanges();
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 logger.LogError(ex.Message);
             }
@@ -31,7 +34,7 @@ namespace NetBackend_Database.Seed
             var customerId = new Guid("c3aa9321-79a3-41ef-81b4-a99536a7a6bc");
             var someCustomer = appDbContext.Customers.FirstOrDefault(m => m.Id == customerId);
 
-            if (someCustomer == null) 
+            if (someCustomer == null)
             {
                 var customer = new Customer()
                 {
@@ -47,11 +50,11 @@ namespace NetBackend_Database.Seed
             }
         }
 
-        private void SeedMultipleCustomersIfNotEnoughExists(int number) 
+        private void SeedMultipleCustomersIfNotEnoughExists(int number)
         {
             var customersNumber = appDbContext.Customers.Count();
             int pending = number - customersNumber;
-            if (pending > 0) 
+            if (pending > 0)
             {
                 var faker = new Faker<Customer>().
                     RuleFor(u => u.FirstName, (f, u) => f.Name.FirstName()).
@@ -62,7 +65,7 @@ namespace NetBackend_Database.Seed
                     RuleFor(u => u.Created, (f, u) => f.Date.PastOffset());
 
                 var customersToAdd = new List<Customer>();
-                for (int i = 0; i < pending; i++) 
+                for (int i = 0; i < pending; i++)
                 {
                     customersToAdd.Add(faker.Generate());
                 }
