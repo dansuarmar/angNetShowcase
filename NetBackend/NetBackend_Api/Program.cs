@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using NetBackend_Api.Controllers;
 using NetBackend_Application.CustomerApp;
 using NetBackend_Database;
 using NetBackend_Database.Seed;
@@ -16,8 +17,8 @@ namespace NetBackend_Api
             {
                 options.AddPolicy("LocalPolicy", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             });
-
-            builder.Services.AddControllers();
+            
+            builder.Services.AddControllers().AddApplicationPart(typeof(VersionController).Assembly);
 
 
             if (Environment.OSVersion.Platform == PlatformID.Unix)
