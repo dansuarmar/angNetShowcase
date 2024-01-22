@@ -5,7 +5,7 @@ VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetBackend_Database", "NetBackend_Database\NetBackend_Database.csproj", "{89C130F8-9F83-4952-9625-23569DF1A041}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetBacked_Api", "NetBacked_Api\NetBacked_Api.csproj", "{CA14EEDF-9181-4EA9-97C2-CEFBA08FFC4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetBackend_Api", "NetBackend_Api\NetBackend_Api.csproj", "{CA14EEDF-9181-4EA9-97C2-CEFBA08FFC4A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetBackend_Application", "NetBackend_Application\NetBackend_Application.csproj", "{0B3DB1D3-9C7A-4B62-B45E-B91C2D928208}"
 EndProject
