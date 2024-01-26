@@ -18,5 +18,7 @@ namespace NetBackend_Api_Controllers
         public static partial PagedResponse<CustomerResponse> CustomerPageResulttoPagedResponse(PagedResult<CustomerResult> pagedResponse);
 
         public static partial CreateCustomerCommand CreateCustomerRequesttoCreateCustomerCommand(UpsertCustomerRequest createCustomerRequest);
+        
+        public static partial UpdateCustomerCommand CreateCustomerRequesttoUpdateCustomerCommand(UpsertCustomerRequest createCustomerRequest);
     }
 }

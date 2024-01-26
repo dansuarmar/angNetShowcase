@@ -18,7 +18,7 @@ namespace NetBackend_UnitTests.Helpers
             Validator.TryValidateObject(model, validationContext, validationResults, true);
             foreach (var validationResult in validationResults)
             {
-                controller.ModelState.AddModelError(validationResult.MemberNames.First(), validationResult.ErrorMessage);
+                controller.ModelState.AddModelError(validationResult.MemberNames.First(), validationResult.ErrorMessage!);
             }
         }
     }

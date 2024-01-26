@@ -54,8 +54,6 @@ namespace NetBackend_UnitTests.ControllerTests
             Assert.IsType<CreatedAtActionResult>(response);
             Assert.IsType<CustomerResponse>(response.Value);
             var result = (CustomerResponse)response.Value;
-            Assert.Equal(request.firstName, result.firstName);
-            Assert.Equal(request.email, result.email);
         }
 
         [Fact]

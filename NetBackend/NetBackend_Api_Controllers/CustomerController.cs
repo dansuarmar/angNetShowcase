@@ -79,7 +79,7 @@ namespace NetBackend_Api.Controllers
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var command = ApiMapper.CreateCustomerRequesttoCreateCustomerCommand(request);
+            var command = ApiMapper.CreateCustomerRequesttoUpdateCustomerCommand(request);
             command.Id = id;
             CustomerResult? result = await _mediator.Send(command);
             CustomerResponse? response = ApiMapper.CustomerResultToCustomerResponse(result);
