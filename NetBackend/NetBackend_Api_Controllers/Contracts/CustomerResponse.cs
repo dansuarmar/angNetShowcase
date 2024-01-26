@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NetBackend_Api_Controllers.Contracts
 { 
-    internal record CustomerResponse(
+    public record CustomerResponse(
         Guid id,
         string firstName,
         string lastName,

@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using NetBackend_Api_Controllers;
 using NetBackend_Api_Controllers.Contracts;
 using NetBackend_Application.CustomerApp;
@@ -53,9 +54,12 @@ namespace NetBackend_Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CreateCustomerCommand command)
+        public async Task<IActionResult> Post([FromBody] UpsertCustomerRequest request)
         {
-            CustomerResult result = await _mediator.Send(command);
+            if (!ModelState.IsValid) 
+                return BadRequest();
+
+            CustomerResult result = await _mediator.Send(ApiMapper.CreateCustomerRequesttoCreateCustomerCommand(request));
             CustomerResponse? response = ApiMapper.CustomerResultToCustomerResponse(result);
             return CreatedAtAction("GetById", new { customerId = response?.id }, response);
         }
@@ -70,8 +74,12 @@ namespace NetBackend_Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(Guid id, [FromBody] UpdateCustomerCommand command)
+        public async Task<IActionResult> Put(Guid id, [FromBody] UpsertCustomerRequest request)
         {
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var command = ApiMapper.CreateCustomerRequesttoCreateCustomerCommand(request);
             command.Id = id;
             CustomerResult? result = await _mediator.Send(command);
             CustomerResponse? response = ApiMapper.CustomerResultToCustomerResponse(result);

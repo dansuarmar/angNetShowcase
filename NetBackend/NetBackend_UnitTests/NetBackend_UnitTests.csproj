@@ -11,6 +11,9 @@
 
   <ItemGroup>
     <PackageReference Include="Bogus" Version="35.4.0" />
+    <PackageReference Include="FakeItEasy" Version="8.1.0" />
+    <PackageReference Include="FluentAssertions" Version="6.12.0" />
+    <PackageReference Include="MediatR" Version="12.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.0" />
     <PackageReference Include="NSubstitute" Version="5.1.0" />
@@ -26,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NetBackend_Api_Controllers\NetBackend_Api_Controllers.csproj" />
     <ProjectReference Include="..\NetBackend_Application\NetBackend_Application.csproj" />
     <ProjectReference Include="..\NetBackend_Database\NetBackend_Database.csproj" />
   </ItemGroup>
